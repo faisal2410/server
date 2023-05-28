@@ -1,5 +1,16 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const { Schema } = mongoose; 
+
+// const testSchema = new Schema({
+
+
+
+
+// }, { timestamps: true, versionKey: false })
+
+
+// const Test = mongoose.model("Test", testSchema);
+// module.exports = Test;
 
 
 
@@ -29,9 +40,9 @@ const userSchema = new Schema(
         role: {
             type: Number,
             default: 0,
-        },
+        }      
     },
-    { timestamps: true, versionKey: false }
+    { timestamps: true, versionKey:false }
 );
 
 const User = mongoose.model("User", userSchema);

@@ -1,19 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose; 
 
-// const testSchema = new Schema({
-
-
-
-
-// }, { timestamps: true, versionKey: false })
-
-
-// const Test = mongoose.model("Test", testSchema);
-// module.exports = Test;
-
-
-
 const userSchema = new Schema(
     {
         name: {

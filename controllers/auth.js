@@ -70,11 +70,13 @@ exports.login = async (req, res) => {
         }
         // 3. check if email is taken
         const user = await User.findOne({ email });
+        console.log(user)
         if (!user) {
             return res.json({ error: "User not found" });
         }
         // 4. compare password
         const match = await comparePassword(password, user.password);
+       
         if (!match) {
             return res.json({ error: "Invalid email or password" });
         }

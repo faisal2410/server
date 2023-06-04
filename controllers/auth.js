@@ -100,7 +100,11 @@ exports.login = async (req, res) => {
 };
 
 exports.secret = async (req, res) => {
-    res.json({ currentUser: req.user });
+    console.log(req.user);
+    res.json({
+        currentUser: req.user,
+        message: "admin successfully entered in the controller"
+    });
 };
 
 
@@ -108,6 +112,7 @@ exports.updateProfile = async (req, res) => {
     try {
         const { name, password, address } = req.body;
         const user = await User.findById(req.user._id);
+       
 
 
         // check password length
@@ -116,7 +121,7 @@ exports.updateProfile = async (req, res) => {
                 error: "Password is required and should be min 6 characters long",
             });
         }
-        // hash the password
+        // // hash the password
         const hashedPassword = password ? await hashPassword(password) : undefined;
 
         const updated = await User.findByIdAndUpdate(
@@ -130,6 +135,7 @@ exports.updateProfile = async (req, res) => {
         );
 
         updated.password = undefined;
+        updated.role=undefined;
         res.json(updated);
     } catch (err) {
         console.log(err);

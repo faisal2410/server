@@ -2,6 +2,9 @@ const Category = require("../models/category.js");
 // const Product = require("../models/product.js");
 const slugify = require("slugify");
 
+
+
+
 exports.create = async (req, res) => {
     try {
         const { name } = req.body;
@@ -14,6 +17,7 @@ exports.create = async (req, res) => {
         }
 
         const category = await new Category({ name, slug: slugify(name) }).save();
+        console.log(category)
         res.json(category);
     } catch (err) {
         console.log(err);
@@ -43,6 +47,7 @@ exports.update = async (req, res) => {
 
 exports.remove = async (req, res) => {
     try {
+        
         const removed = await Category.findByIdAndDelete(req.params.categoryId);
         res.json(removed);
     } catch (err) {

@@ -1,5 +1,5 @@
-const Product = require("../models/product.js");
 const fs = require("fs");
+const Product = require("../models/product.js");
 const slugify = require("slugify");
 // const braintree = require("braintree");
 require("dotenv").config();
@@ -18,8 +18,8 @@ require("dotenv").config();
 
 exports.create = async (req, res) => {
     try {
-        console.log(req.fields);
-        console.log(req.files);
+        console.log("xxxxxxxxxxxxxxxxxx========>",req.fields);
+        console.log("0000000000000000========>",req.files);
         const { name, description, price, category, quantity, shipping } =
             req.fields;
         const { photo } = req.files;
@@ -43,6 +43,7 @@ exports.create = async (req, res) => {
                 return res.json({ error: "Image should be less than 1mb in size" });
         }
 
+        
         // create product
         const product = new Product({ ...req.fields, slug: slugify(name) });
 

@@ -7,7 +7,8 @@ const { requireSignin, isAdmin } = require("../middlewares/auth.js");
 
 
 // controllers
-const { register, login, secret, updateProfile } = require("../controllers/auth.js");
+const { register, login, secret, updateProfile, getOrders,
+    allOrders, } = require("../controllers/auth.js");
 
 router.post("/register", register);
 router.post("/login", login);
@@ -24,6 +25,8 @@ router.get("/secret", requireSignin, isAdmin, secret);
 
 router.put("/profile", requireSignin, updateProfile);
 
-
+// orders
+router.get("/orders", requireSignin, getOrders);
+router.get("/all-orders", requireSignin, isAdmin, allOrders);
 
 module.exports = router;

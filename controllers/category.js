@@ -1,5 +1,5 @@
 const Category = require("../models/category.js");
-// const Product = require("../models/product.js");
+const Product = require("../models/product.js");
 const slugify = require("slugify");
 
 
@@ -76,16 +76,16 @@ exports.read = async (req, res) => {
     }
 };
 
-// exports.productsByCategory = async (req, res) => {
-//     try {
-//         const category = await Category.findOne({ slug: req.params.slug });
-//         const products = await Product.find({ category }).populate("category");
+exports.productsByCategory = async (req, res) => {
+    try {
+        const category = await Category.findOne({ slug: req.params.slug });
+        const products = await Product.find({ category }).populate("category");
 
-//         res.json({
-//             category,
-//             products,
-//         });
-//     } catch (err) {
-//         console.log(err);
-//     }
-// };
+        res.json({
+            category,
+            products,
+        });
+    } catch (err) {
+        console.log(err);
+    }
+};
